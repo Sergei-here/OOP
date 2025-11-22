@@ -1,18 +1,41 @@
 public class OOP {
 
     public static void main(String[] args) {
-        Line line1 = new Line(1, 3, 5, 8);
-        Line line2 = new Line(10, 11, 15, 19);
-        Line line3 = new Line(line1.end, line2.start);
-        System.out.println("Линия 3 до изменений:" + line3);
+        PolyLine polyLine = new PolyLine();
+        polyLine.addPoint(new Point(1, 5));
+        polyLine.addPoint(new Point(2, 8));
+        polyLine.addPoint(new Point(5, 3));
+        polyLine.addPoint(new Point(8, 9));
+        System.out.println("1. Ломанная линия:" + polyLine);
 
-        line3.start.x = 5;
-        line3.end.x = 5;
-        line3.start.y = 5;
-        line3.end.y = 5;
-        System.out.println("Линия 3 после изменения:" + line3);
+        double polyLineLength = polyLine.getLength();
+        System.out.println("2. Длина ломаной: " + polyLineLength);
 
-        double lengthLine123 = line1.getLength() + line2.getLength() + line3.getLength();
-        System.out.println("Суммарная длина всех линий:" + lengthLine123);
+        Line[] lines = polyLine.getLines();
+        System.out.println("3. Массив линий:");
+        for (int i = 0; i < lines.length; i++) {
+            System.out.println(lines[i]);
+        }
+
+        double linesLength = 0.0;
+        for (int i = 0; i < lines.length; i++) {
+            Line currentLine = lines[i];
+            double lineLength = currentLine.getLength();
+            linesLength += lineLength;
+        }
+        System.out.println("4. Длина массива линий: " + linesLength);
+
+        System.out.println("5. Сравнение длин:" + (Math.abs(polyLineLength - linesLength) < 0.0000001));
+
+        System.out.println("6. Изменение координат:");
+        polyLine.points[1] = new Point(12, 8);
+        System.out.println("Ломанная после изменения : " + polyLine);
+
+        Line[] updatedLines = polyLine.getLines();
+        System.out.println("Массив двух линий после изменения:");
+        for (int i = 0; i < updatedLines.length - 1; i++) {
+            Line currentLine = updatedLines[i];
+            System.out.println(currentLine);
+        }
     }
 }

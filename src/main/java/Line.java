@@ -17,7 +17,6 @@ public class Line {
         return "Линия от " + end + " до " + start;
     }
 
-
     public double getLength() {
         int deltaX = end.x - start.x;
         int deltaY = end.y - start.y;
