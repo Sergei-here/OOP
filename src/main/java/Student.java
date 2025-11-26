@@ -1,7 +1,8 @@
 import java.util.Arrays;
 
 public class Student {
-    private String name;
+
+    private final String name;
     private int[] grades;
 
     public Student(String name) {
@@ -11,7 +12,6 @@ public class Student {
 
     public Student(String name, int[] addGrades) {
         this.name = name;
-        // Защитное копирование для инкапсуляции
         if (addGrades != null) {
             for (int i = 0; i < addGrades.length; i++) {
                 checkGrade(addGrades[i]);
@@ -25,17 +25,12 @@ public class Student {
 
     private void checkGrade(int grade) {
         if (grade < 2 || grade > 5) {
-            throw new IllegalArgumentException("Оценка должна быть от 2 до 5: " + grade);
+            throw new IllegalArgumentException("Оценка может быть от 2 до 5: " + grade);
         }
     }
 
     public String toString() {
         return name + ": " + Arrays.toString(grades);
-    }
-}
-
- /*   public String getName() {
-        return name;
     }
 
     public int[] getGrades() {
@@ -44,15 +39,12 @@ public class Student {
 
     public void addGrade(int grade) {
         checkGrade(grade); // проверяем оценку
-
-        // Создаем новый массив на 1 больше
-        int[] newGrades = new int[grades.length + 1];
-
-        // Копируем старые оценки
-        for (int i = 0; i < grades.length; i++) {
+        int[] newGrades = new int[grades.length + 1]; // Создаем новый массив на 1 больше
+        for (int i = 0; i < grades.length; i++) { // Копируем старые оценки
             newGrades[i] = grades[i];
         }
+        newGrades[grades.length] = grade;
+        grades = newGrades; // в новый массив
     }
 }
 
-  */
