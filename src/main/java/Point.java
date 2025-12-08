@@ -2,7 +2,7 @@ public class Point { // создали класс Точка
 
     int x, y;
 
-    public Point(int x, int y) { // объявили конструктор
+    public Point(int x, int y, int z) { // объявили конструктор
         this.x = x;
         this.y = y;
     }
